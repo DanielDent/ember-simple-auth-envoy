@@ -1,8 +1,10 @@
-# ember-simple-auth-pouch
+# ember-simple-auth-envoy
+
+(Based on ember-simple-auth-pouch with minimal changes)
 
 This thang aint even close to being ready for use...just hold your horses.
 
-That being said I have been able to use it to auth to couchdb server :-)
+That being said I have been able to use it to auth to an envoy-proxied couchdb server :-)
 
 ## Installation
 

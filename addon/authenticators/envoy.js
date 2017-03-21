@@ -33,7 +33,7 @@ export default Base.extend({
   			self.db.emit('loggedin');
   		}
   		else {
-  			result = Ember.RSVP.reject("Not logged in or incorrect user in cookie");
+  			result = Ember.RSVP.reject("Not logged in or incorrect stored username/password");
   		}
   		
   		return result;

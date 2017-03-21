@@ -8,7 +8,7 @@ export default Ember.Component.extend({
   actions: {
     authenticateWithPouch() {
       let { identification, password } = this.getProperties('identification', 'password');
-      this.get('session').authenticate('authenticator:pouch', identification, password).catch((reason) => {
+      this.get('session').authenticate('authenticator:envoy', identification, password).catch((reason) => {
         this.set('errorMessage', reason.error);
       });
     }
