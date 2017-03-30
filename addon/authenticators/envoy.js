@@ -4,13 +4,13 @@ const { getOwner } = Ember;
 
 export default Base.extend({
   store: Ember.inject.service(),
-    
+
   init() {
     this._super(...arguments);
 
     this.db = this.getDb();
   },
-  
+
   getDb() {
   	let config = getOwner(this).resolveRegistration('config:environment');
 
@@ -20,7 +20,7 @@ export default Base.extend({
     let pouchAdapter = this.get('store').adapterFor(pouchAdapterName);
 
     Ember.assert('You must have an ember-pouch adapter setup for authentication', pouchAdapter);
-    
+
   	return pouchAdapter.db;
   },
 
@@ -35,7 +35,7 @@ export default Base.extend({
   		else {
   			result = Ember.RSVP.reject("Not logged in or incorrect stored username/password");
   		}
-  		
+
   		return result;
   	});
   },
@@ -45,6 +45,9 @@ export default Base.extend({
     return this.db.login(username, password).then(function() {
     	return self.db.getSession().then(function(resp) {
     		self.db.emit('loggedin');
+        // Workaround for issue where database data is stale after logging in
+        // TODO: consider using config.authAdapter setting
+        self.get('store').adapterFor('application').init();
     		return resp.userCtx;
     	});
 	});
