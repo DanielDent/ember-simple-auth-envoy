@@ -28,8 +28,8 @@ export default Base.extend({
   	let self = this;
   	return this.db.getSession().then(function(resp) {
   		let result = null;
-  		if (!Ember.isEmpty(data.name) && resp.userCtx.name === data.name) {
-  			result = resp.userCtx;
+  		if (!Ember.isEmpty(data.username) && resp.username === data.username) {
+  			result = resp;
   			self.db.emit('loggedin');
   		}
   		else {
@@ -48,7 +48,7 @@ export default Base.extend({
         // Workaround for issue where database data is stale after logging in
         // TODO: consider using config.authAdapter setting
         self.get('store').adapterFor('application').init();
-    		return resp.userCtx;
+    		return resp;
     	});
 	});
   },

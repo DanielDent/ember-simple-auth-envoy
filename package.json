@@ -1,6 +1,6 @@
 {
   "name": "ember-simple-auth-envoy",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Ember Simple Auth Authenticator for Envoy.",
   "directories": {
     "doc": "doc",
